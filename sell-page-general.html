@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ويب برو — تصميم مواقع احترافية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#0f172a;--accent:#6366f1;--gold:#f59e0b;--green:#10b981;--light:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Tajawal',sans-serif;background:var(--white);color:var(--text);direction:rtl;overflow-x:hidden;}
+nav{background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;justify-content:space-between;align-items:center;height:68px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:22px;font-weight:900;color:var(--primary);}.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-cta{background:var(--accent);color:white;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:800;font-size:14px;transition:all .2s;}
+.nav-cta:hover{background:#4f46e5;transform:translateY(-1px);}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 60%,#0f172a 100%);padding:110px 60px 90px;text-align:center;position:relative;overflow:hidden;}
+.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(99,102,241,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:#a5b4fc;font-size:13px;font-weight:700;padding:8px 20px;border-radius:30px;margin-bottom:28px;}
+.hero h1{font-size:58px;font-weight:900;color:white;line-height:1.1;margin-bottom:22px;}
+.hero h1 .grad{background:linear-gradient(90deg,#a5b4fc,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:18px;color:rgba(255,255,255,.65);line-height:1.8;max-width:600px;margin:0 auto 44px;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-main{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:white;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 8px 32px rgba(99,102,241,.4);}
+.btn-main:hover{transform:translateY(-3px);}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:16px 32px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);color:white;}
+.chips-bar{background:var(--light);padding:20px 60px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.chip{background:white;border:1.5px solid var(--border);border-radius:50px;padding:8px 18px;font-size:13px;font-weight:700;color:var(--muted);}
+section{padding:90px 60px;}
+.sec-center{text-align:center;}
+.label{display:inline-block;font-size:12px;font-weight:800;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+.sec-title{font-size:38px;font-weight:900;color:var(--primary);line-height:1.2;margin-bottom:14px;}
+.sec-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:560px;margin:0 auto;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+.feat{background:var(--light);border-radius:18px;padding:32px 26px;border:1.5px solid var(--border);transition:all .3s;}
+.feat:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(99,102,241,.1);border-color:var(--accent);}
+.feat-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--accent),#8b5cf6);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px;}
+.feat h3{font-size:17px;font-weight:800;color:var(--primary);margin-bottom:10px;}
+.feat p{font-size:14px;color:var(--muted);line-height:1.7;}
+.cats-bg{background:var(--light);}
+.cats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;}
+.cat{background:white;border-radius:16px;padding:28px 20px;text-align:center;border:1.5px solid var(--border);transition:all .3s;}
+.cat:hover{border-color:var(--accent);box-shadow:0 8px 32px rgba(99,102,241,.12);transform:translateY(-4px);}
+.cat-icon{font-size:40px;margin-bottom:12px;}
+.cat h4{font-size:15px;font-weight:800;color:var(--primary);margin-bottom:6px;}
+.cat p{font-size:12px;color:var(--muted);}
+.cat-price{display:inline-block;background:var(--light);color:var(--accent);font-size:12px;font-weight:800;padding:4px 12px;border-radius:20px;margin-top:10px;}
+.proc-bg{background:white;}
+.proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:56px;position:relative;}
+.proc-grid::before{content:'';position:absolute;top:28px;right:10%;left:10%;height:2px;background:linear-gradient(to left,#06b6d4,var(--accent));opacity:.3;}
+.step{text-align:center;padding:0 10px;}
+.step-c{width:56px;height:56px;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;margin:0 auto 18px;position:relative;z-index:1;box-shadow:0 4px 16px rgba(99,102,241,.3);}
+.step h4{font-size:14px;font-weight:800;color:var(--primary);margin-bottom:6px;}
+.step p{font-size:12px;color:var(--muted);line-height:1.6;}
+.price-bg{background:var(--light);}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:56px auto 0;}
+.price-card{background:white;border:2px solid var(--border);border-radius:20px;padding:36px 28px;transition:transform .3s;position:relative;}
+.price-card:hover{transform:translateY(-6px);}
+.price-card.pop{border-color:var(--accent);box-shadow:0 16px 48px rgba(99,102,241,.15);}
+.pop-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),#8b5cf6);color:white;font-size:12px;font-weight:800;padding:5px 20px;border-radius:20px;white-space:nowrap;}
+.price-tier{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.price-num{font-size:50px;font-weight:900;color:var(--primary);line-height:1;}
+.price-num sup{font-size:20px;vertical-align:top;margin-top:12px;display:inline-block;}
+.price-desc{font-size:13px;color:var(--muted);margin:8px 0 24px;}
+.price-list{margin-bottom:28px;}
+.pi{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.pi:last-child{border:none;}
+.pi.off{color:var(--muted);}
+.btn-price{display:block;text-align:center;background:var(--primary);color:white;padding:13px;border-radius:10px;font-size:14px;font-weight:800;text-decoration:none;transition:all .2s;}
+.btn-price:hover{background:var(--accent);}
+.price-card.pop .btn-price{background:linear-gradient(135deg,var(--accent),#8b5cf6);}
+.test-bg{background:white;}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+.test{background:var(--light);border:1.5px solid var(--border);border-radius:18px;padding:28px;}
+.stars{color:var(--gold);font-size:16px;margin-bottom:14px;}
+.test p{font-size:14px;color:var(--text);line-height:1.8;margin-bottom:18px;}
+.tauth{display:flex;align-items:center;gap:12px;}
+.tavatar{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.tname{font-size:14px;font-weight:800;color:var(--primary);}
+.trole{font-size:12px;color:var(--muted);}
+.faq-bg{background:var(--light);}
+.faq-list{max-width:700px;margin:50px auto 0;}
+.faq-item{background:white;border:1.5px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.faq-q{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:700;color:var(--primary);}
+.faq-q span{color:var(--accent);font-size:20px;transition:transform .3s;flex-shrink:0;margin-right:12px;}
+.faq-a{padding:0 24px;font-size:14px;color:var(--muted);line-height:1.8;max-height:0;overflow:hidden;transition:all .3s;}
+.faq-item.open .faq-a{max-height:200px;padding:0 24px 18px;}
+.faq-item.open .faq-q span{transform:rotate(45deg);}
+.cta-sec{background:linear-gradient(135deg,#0f172a,#1e1b4b);text-align:center;padding:100px 60px;position:relative;overflow:hidden;}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(99,102,241,.15),transparent 70%);}
+.cta-sec h2{font-size:44px;font-weight:900;color:white;margin-bottom:16px;}
+.cta-sec p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:40px;}
+.cont-bg{background:white;}
+.cont-box{max-width:680px;margin:56px auto 0;background:var(--light);border-radius:24px;padding:48px;border:1.5px solid var(--border);}
+.cont-box h3{font-size:24px;font-weight:900;color:var(--primary);margin-bottom:6px;}
+.cont-box .sub{font-size:14px;color:var(--muted);margin-bottom:30px;}
+.frow{margin-bottom:16px;}
+.frow label{display:block;font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.frow input,.frow select,.frow textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'Tajawal',sans-serif;font-size:14px;color:var(--text);outline:none;background:white;transition:border-color .2s;}
+.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--accent);}
+.frow textarea{min-height:90px;resize:vertical;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.btn-submit{background:linear-gradient(135deg,#25D366,#128C7E);color:white;border:none;width:100%;padding:16px;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;margin-top:6px;box-shadow:0 4px 16px rgba(37,211,102,.3);}
+.btn-submit:hover{transform:translateY(-2px);}
+.form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;}
+.form-success{display:none;background:#d1fae5;color:#059669;border:1px solid #a7f3d0;border-radius:10px;padding:16px;text-align:center;font-weight:800;margin-top:14px;}
+.form-error{display:none;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:10px;padding:16px;text-align:center;font-weight:800;margin-top:14px;}
+.admin-trigger{text-align:center;padding:18px;background:#0a0f1e;}
+.admin-trigger button{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);color:#a5b4fc;padding:10px 28px;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+.admin-trigger button:hover{background:rgba(99,102,241,.25);}
+footer{background:#0f172a;color:rgba(255,255,255,.35);padding:28px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.f-logo{font-size:18px;font-weight:900;color:white;}.f-logo span{color:var(--accent);}
+footer a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;backdrop-filter:blur(6px);align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.pw-box{background:white;border-radius:20px;padding:40px 36px;width:90%;max-width:360px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.4);}
+.pw-box h3{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:6px;}
+.pw-box p{font-size:14px;color:var(--muted);margin-bottom:24px;}
+.pw-input{width:100%;padding:13px;border:2px solid var(--border);border-radius:10px;font-family:'Tajawal',sans-serif;font-size:16px;text-align:center;letter-spacing:4px;outline:none;margin-bottom:12px;transition:border-color .2s;}
+.pw-input:focus{border-color:var(--accent);}
+.pw-input.err{border-color:#ef4444;animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pw-btn{background:var(--accent);color:white;border:none;width:100%;padding:13px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;}
+.pw-cancel{background:none;border:none;color:var(--muted);font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;margin-top:12px;display:block;width:100%;}
+.pw-err{color:#ef4444;font-size:13px;margin-top:10px;display:none;}
+.admin-box{background:white;border-radius:20px;width:95%;max-width:920px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.4);}
+.admin-hdr{background:linear-gradient(135deg,#0f172a,#1e1b4b);padding:22px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;}
+.admin-hdr h2{color:white;font-size:19px;font-weight:800;}
+.admin-close{background:rgba(255,255,255,.1);border:none;color:white;width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:18px;}
+.admin-tabs{display:flex;border-bottom:2px solid var(--border);background:#f8fafc;padding:0 32px;flex-wrap:wrap;}
+.atab{padding:14px 16px;border:none;background:none;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.atab.on{color:var(--accent);border-bottom-color:var(--accent);}
+.admin-body{padding:28px 32px;}
+.atab-content{display:none;}
+.atab-content.on{display:block;}
+.af-row{margin-bottom:16px;}
+.af-row label{display:block;font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.af-row input,.af-row textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Tajawal',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+.af-row input:focus,.af-row textarea:focus{border-color:var(--accent);}
+.af-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.af-btn{background:var(--accent);color:white;border:none;width:100%;padding:13px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s;}
+.af-btn:hover{background:#4f46e5;}
+.af-msg{display:none;background:#d1fae5;color:#059669;padding:12px;border-radius:8px;text-align:center;font-weight:700;margin-top:10px;}
+.orders-tbl{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px;}
+.orders-tbl th{background:var(--light);padding:12px 14px;text-align:right;font-weight:800;color:var(--primary);border-bottom:2px solid var(--border);}
+.orders-tbl td{padding:12px 14px;border-bottom:1px solid var(--border);}
+.orders-tbl tr:hover td{background:#fafafa;}
+.orders-empty{text-align:center;padding:40px;color:var(--muted);font-size:15px;}
+.refresh-btn{background:var(--light);border:1.5px solid var(--border);color:var(--primary);padding:8px 18px;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:12px;}
+.bank-preview{display:none;margin-top:20px;background:#f8fafc;border:1.5px solid var(--border);border-radius:12px;padding:20px;}
+.bank-preview h4{font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px;}
+.bank-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.bank-row:last-child{border:none;}
+.bank-row span:first-child{color:var(--muted);}
+.bank-row span:last-child{font-weight:800;color:var(--primary);}
+.ai-banner{background:linear-gradient(135deg,#ede9fe,#e0f2fe);border-radius:14px;padding:20px;margin-bottom:20px;}
+.ai-banner h4{font-size:15px;font-weight:800;color:var(--primary);margin-bottom:8px;}
+.ai-banner p{font-size:13px;color:#475569;line-height:1.7;}
+.ai-result{display:none;margin-top:16px;background:#f8fafc;border:1.5px solid var(--border);border-radius:12px;padding:20px;}
+.ai-result-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.ai-result-hdr h4{font-size:14px;font-weight:800;color:var(--primary);}
+.copy-btn{background:#e0f2fe;color:#0284c7;border:none;padding:6px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
+.ai-text{font-size:14px;color:#334155;line-height:1.9;white-space:pre-line;}
+.ai-loading{display:none;text-align:center;padding:24px;color:var(--accent);font-weight:700;font-size:15px;}
+.wa-float{position:fixed;bottom:28px;left:28px;background:#25D366;color:white;border-radius:50px;padding:13px 22px;font-size:14px;font-weight:800;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.4);display:flex;align-items:center;gap:8px;z-index:998;animation:pulse 2s infinite;}
+.wa-float:hover{animation:none;transform:translateY(-3px);}
+@keyframes pulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)}50%{box-shadow:0 6px 36px rgba(37,211,102,.7)}}
+@media(max-width:900px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  .hero{padding:70px 24px;}.hero h1{font-size:30px;}
+  section{padding:56px 24px;}
+  .feat-grid,.test-grid{grid-template-columns:1fr 1fr;}
+  .cats-grid{grid-template-columns:1fr 1fr;}
+  .proc-grid{grid-template-columns:1fr 1fr;}.proc-grid::before{display:none;}
+  .price-grid{grid-template-columns:1fr;}
+  .cont-box,.admin-body{padding:24px 16px;}
+  .fgrid,.af-grid{grid-template-columns:1fr;}
+  footer{padding:24px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ويب<span>برو</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">المميزات</a></li>
+    <li><a href="#categories">الأنواع</a></li>
+    <li><a href="#pricing">الأسعار</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">🚀 ابدأ الآن</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">✨ خدمة تصميم مواقع احترافية</div>
+  <h1>موقعك على الإنترنت<br><span class="grad">يبدأ من هنا</span></h1>
+  <p>نصمم لك موقعاً احترافياً يناسب نشاطك التجاري — عيادة، مطعم، شركة، أو أي شي — بتسليم سريع ولوحة تحكم كاملة.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-main">🚀 ابدأ مشروعك</a>
+    <a href="#categories" class="btn-ghost">👀 شوف الأنواع</a>
+  </div>
+</section>
+
+<div class="chips-bar">
+  <div class="chip">🏥 عيادات</div><div class="chip">🍽️ مطاعم</div>
+  <div class="chip">🏢 شركات</div><div class="chip">🛍️ متاجر</div>
+  <div class="chip">💇 صالونات</div><div class="chip">⚖️ محامين</div>
+  <div class="chip">🏋️ أندية رياضية</div><div class="chip">📸 مصورين</div>
+  <div class="chip">🎓 معاهد</div><div class="chip">✨ وأكثر</div>
+</div>
+
+<section id="features">
+  <div class="sec-center">
+    <p class="label">ماذا تحصل</p>
+    <h2 class="sec-title">كل شي جاهز من أول يوم</h2>
+    <p class="sec-sub">مش بس تصميم — خدمة متكاملة من التصميم للنشر والدعم.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat"><div class="feat-icon">🎨</div><h3>تصميم مخصص لك</h3><p>موقع يعكس هوية نشاطك بالألوان والصور — مش قالب جاهز.</p></div>
+    <div class="feat"><div class="feat-icon">⚙️</div><h3>لوحة تحكم محمية</h3><p>عدّل المحتوى بنفسك بكلمة سر — بدون ما تحتاج مبرمج.</p></div>
+    <div class="feat"><div class="feat-icon">📱</div><h3>يشتغل على كل أجهزة</h3><p>جوال، تابلت، كمبيوتر — يبدو مثالياً في كل مكان.</p></div>
+    <div class="feat"><div class="feat-icon">💚</div><h3>تواصل عبر واتساب</h3><p>زر واتساب مباشر يفتح محادثة مع رسالة جاهزة للعملاء.</p></div>
+    <div class="feat"><div class="feat-icon">🌐</div><h3>نشر كامل على الإنترنت</h3><p>ننشر الموقع ونعطيك رابطاً جاهزاً تشاركه فوراً.</p></div>
+    <div class="feat"><div class="feat-icon">📲</div><h3>ربط السوشل ميديا</h3><p>انستقرام، سناب، إكس، وواتساب — كلها مربوطة.</p></div>
+  </div>
+</section>
+
+<section id="categories" class="cats-bg">
+  <div class="sec-center">
+    <p class="label">أنواع المواقع</p>
+    <h2 class="sec-title">نصمم لأي نشاط تجاري</h2>
+    <p class="sec-sub">سواء كنت طبيب أو صاحب مطعم أو شركة — عندنا الحل.</p>
+  </div>
+  <div class="cats-grid">
+    <div class="cat"><div class="cat-icon">🏥</div><h4>عيادات طبية</h4><p>أطباء، شهادات، حجز مواعيد</p><span class="cat-price">من 999 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">🍽️</div><h4>مطاعم وكافيهات</h4><p>قائمة طعام، صور، فروع</p><span class="cat-price">من 999 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">🏢</div><h4>شركات ومكاتب</h4><p>خدمات، فريق العمل، تواصل</p><span class="cat-price">من 1299 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">🛍️</div><h4>متاجر إلكترونية</h4><p>منتجات، واتساب، كتالوج</p><span class="cat-price">من 1499 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">💇</div><h4>صالونات وسبا</h4><p>خدمات، معرض صور، حجز</p><span class="cat-price">من 899 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">📸</div><h4>بورتفوليو شخصي</h4><p>أعمال، مهارات، تواصل</p><span class="cat-price">من 699 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">🎓</div><h4>معاهد ومدارس</h4><p>كورسات، مدربين، تسجيل</p><span class="cat-price">من 1299 ر.س</span></div>
+    <div class="cat"><div class="cat-icon">🏋️</div><h4>أندية رياضية</h4><p>باقات، جدول، اشتراكات</p><span class="cat-price">من 999 ر.س</span></div>
+  </div>
+</section>
+
+<section class="proc-bg">
+  <div class="sec-center">
+    <p class="label">آلية العمل</p>
+    <h2 class="sec-title">من الفكرة للموقع في 5 خطوات</h2>
+  </div>
+  <div class="proc-grid">
+    <div class="step"><div class="step-c">1</div><h4>تواصل معنا</h4><p>أخبرنا عن نشاطك.</p></div>
+    <div class="step"><div class="step-c">2</div><h4>نحدد المتطلبات</h4><p>نجمع البيانات منك.</p></div>
+    <div class="step"><div class="step-c">3</div><h4>نبدأ التصميم</h4><p>نبني خلال 3-7 أيام.</p></div>
+    <div class="step"><div class="step-c">4</div><h4>مراجعة وتعديل</h4><p>تطلب أي تعديلات.</p></div>
+    <div class="step"><div class="step-c">✅</div><h4>تسليم ونشر</h4><p>رابطك جاهز!</p></div>
+  </div>
+</section>
+
+<section id="pricing" class="price-bg">
+  <div class="sec-center">
+    <p class="label">الأسعار</p>
+    <h2 class="sec-title">استثمار يستحق</h2>
+    <p class="sec-sub">تدفع مرة واحدة فقط وتملك الموقع — بدون رسوم شهرية.</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-tier">الباقة الأساسية</div>
+      <div class="price-num"><sup>ر.س</sup><span id="p1-num">799</span></div>
+      <div class="price-desc">مثالية للأنشطة الصغيرة</div>
+      <div class="price-list">
+        <div class="pi">✅ موقع 3-5 صفحات</div>
+        <div class="pi">✅ تصميم مخصص</div>
+        <div class="pi">✅ يشتغل على الجوال</div>
+        <div class="pi">✅ زر واتساب</div>
+        <div class="pi">✅ نشر على الإنترنت</div>
+        <div class="pi off">❌ لوحة تحكم</div>
+        <div class="pi off">❌ ربط سوشل ميديا</div>
+        <div class="pi off">❌ دعم فني</div>
+      </div>
+      <a href="#contact" class="btn-price">اختر هذه الباقة</a>
+    </div>
+    <div class="price-card pop">
+      <div class="pop-badge">⭐ الأكثر طلباً</div>
+      <div class="price-tier">الباقة الاحترافية</div>
+      <div class="price-num"><sup>ر.س</sup><span id="p2-num">1299</span></div>
+      <div class="price-desc">الأنسب لمعظم الأنشطة</div>
+      <div class="price-list">
+        <div class="pi">✅ موقع كامل غير محدود</div>
+        <div class="pi">✅ تصميم مخصص احترافي</div>
+        <div class="pi">✅ يشتغل على كل أجهزة</div>
+        <div class="pi">✅ زر واتساب + حجز</div>
+        <div class="pi">✅ نشر على الإنترنت</div>
+        <div class="pi">✅ لوحة تحكم بكلمة سر</div>
+        <div class="pi">✅ ربط سوشل ميديا</div>
+        <div class="pi">✅ دعم فني شهر كامل</div>
+      </div>
+      <a href="#contact" class="btn-price">اختر هذه الباقة</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">باقة المتجر</div>
+      <div class="price-num"><sup>ر.س</sup><span id="p3-num">1799</span></div>
+      <div class="price-desc">للمتاجر والكتالوجات</div>
+      <div class="price-list">
+        <div class="pi">✅ كل مميزات الاحترافية</div>
+        <div class="pi">✅ عرض منتجات وكتالوج</div>
+        <div class="pi">✅ فلترة وبحث</div>
+        <div class="pi">✅ طلب عبر واتساب</div>
+        <div class="pi">✅ معرض صور متقدم</div>
+        <div class="pi">✅ لوحة إدارة المنتجات</div>
+        <div class="pi">✅ ربط سوشل ميديا</div>
+        <div class="pi">✅ دعم فني 3 أشهر</div>
+      </div>
+      <a href="#contact" class="btn-price">اختر هذه الباقة</a>
+    </div>
+  </div>
+</section>
+
+<section class="test-bg">
+  <div class="sec-center">
+    <p class="label">آراء العملاء</p>
+    <h2 class="sec-title">ماذا قالوا عنا</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test"><div class="stars">⭐⭐⭐⭐⭐</div><p>"شغل نظيف واحترافي، الموقع طلع أحسن من اللي تخيلته. العملاء صاروا يتواصلون أكثر."</p><div class="tauth"><div class="tavatar">🏥</div><div><div class="tname">عيادة الرعاية — الرياض</div><div class="trole">موقع عيادة</div></div></div></div>
+    <div class="test"><div class="stars">⭐⭐⭐⭐⭐</div><p>"استلمت الموقع في 5 أيام وكان فيه كل شي طلبته. العملاء معجبين فيه."</p><div class="tauth"><div class="tavatar">🍽️</div><div><div class="tname">مطعم لافييت — جدة</div><div class="trole">موقع مطعم</div></div></div></div>
+    <div class="test"><div class="stars">⭐⭐⭐⭐⭐</div><p>"السعر معقول والتواصل سلس. لوحة التحكم سهلة جداً."</p><div class="tauth"><div class="tavatar">🏢</div><div><div class="tname">شركة النخبة — الدمام</div><div class="trole">موقع شركة</div></div></div></div>
+  </div>
+</section>
+
+<section class="faq-bg">
+  <div class="sec-center">
+    <p class="label">أسئلة شائعة</p>
+    <h2 class="sec-title">عندك سؤال؟</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">كم يستغرق تصميم الموقع؟<span>+</span></div><div class="faq-a">عادةً 3-7 أيام عمل حسب حجم الموقع.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">هل أحتاج خبرة تقنية؟<span>+</span></div><div class="faq-a">لا أبداً. لوحة التحكم بسيطة جداً تعدل فيها بدون كود.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">هل الموقع يشتغل على الجوال؟<span>+</span></div><div class="faq-a">نعم، كل مواقعنا تشتغل مثالياً على الجوال والكمبيوتر.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">هل يوجد رسوم شهرية؟<span>+</span></div><div class="faq-a">لا، تدفع مرة واحدة فقط وتملك الموقع — بدون أي رسوم شهرية أو سنوية.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">هل تقدمون دعماً بعد التسليم؟<span>+</span></div><div class="faq-a">نعم، الباقة الاحترافية وباقة المتجر تشمل دعماً فنياً بعد التسليم.</div></div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <h2>جاهز تبدأ؟ 🚀</h2>
+  <p>تواصل معنا الحين وموقعك يكون جاهزاً قبل نهاية الأسبوع.</p>
+  <a href="#contact" class="btn-main">ابدأ مشروعك الآن</a>
+</section>
+
+<section id="contact" class="cont-bg">
+  <div class="sec-center">
+    <p class="label">تواصل معنا</p>
+    <h2 class="sec-title">ابدأ اليوم</h2>
+    <p class="sec-sub">أرسل تفاصيلك وسنتواصل معك خلال ساعات.</p>
+  </div>
+  <div class="cont-box">
+    <h3>📋 نموذج الطلب</h3>
+    <p class="sub">سيتم حفظ طلبك وإرساله عبر واتساب تلقائياً.</p>
+    <div class="fgrid">
+      <div class="frow"><label>الاسم</label><input id="f-name" type="text" placeholder="محمد العلي"></div>
+      <div class="frow"><label>رقم الجوال</label><input id="f-phone" type="text" placeholder="05XXXXXXXX"></div>
+    </div>
+    <div class="frow"><label>نوع النشاط التجاري</label>
+      <select id="f-type">
+        <option value="">— اختر نوع نشاطك —</option>
+        <option>عيادة طبية</option><option>مطعم أو كافيه</option>
+        <option>شركة أو مكتب</option><option>متجر إلكتروني</option>
+        <option>صالون أو سبا</option><option>بورتفوليو شخصي</option>
+        <option>معهد أو مدرسة</option><option>نادي رياضي</option><option>أخرى</option>
+      </select>
+    </div>
+    <div class="frow"><label>الباقة المطلوبة</label>
+      <select id="f-pkg">
+        <option>الباقة الاحترافية — 1299 ر.س</option>
+        <option>الباقة الأساسية — 799 ر.س</option>
+        <option>باقة المتجر — 1799 ر.س</option>
+        <option>أحتاج استشارة أولاً</option>
+      </select>
+    </div>
+    <div class="frow"><label>تفاصيل إضافية (اختياري)</label>
+      <textarea id="f-notes" placeholder="أخبرنا أكثر عن نشاطك..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitForm()">💚 أرسل الطلب عبر واتساب</button>
+    <p class="form-note">سيتم حفظ طلبك وفتح واتساب تلقائياً</p>
+    <div class="form-success" id="form-success">✅ تم حفظ طلبك! جاري فتح واتساب...</div>
+    <div class="form-error" id="form-error">⚠️ تأكد من ملء الاسم ورقم الجوال ونوع النشاط</div>
+  </div>
+</section>
+
+<div class="admin-trigger">
+  <button onclick="openAdmin()">⚙️ لوحة التحكم</button>
+</div>
+
+<footer>
+  <div class="f-logo">ويب<span>برو</span></div>
+  <p>© 2025 — جميع الحقوق محفوظة</p>
+  <a href="https://wa.me/966596655184">تواصل معنا</a>
+</footer>
+
+<a href="https://wa.me/966596655184?text=السلام عليكم، أريد الاستفسار عن خدمة تصميم المواقع" class="wa-float" target="_blank">💚 تواصل معنا</a>
+
+<!-- PASSWORD -->
+<div class="overlay" id="pw-overlay">
+  <div class="pw-box">
+    <div style="font-size:48px;margin-bottom:16px;">🔐</div>
+    <h3>لوحة التحكم</h3>
+    <p>أدخل كلمة المرور للدخول</p>
+    <input type="password" class="pw-input" id="pw-input" placeholder="••••••••" maxlength="30">
+    <button class="pw-btn" onclick="checkPw()">دخول</button>
+    <div class="pw-err" id="pw-err">❌ كلمة المرور غير صحيحة</div>
+    <button class="pw-cancel" onclick="closeOv('pw-overlay')">إلغاء</button>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="overlay" id="admin-overlay">
+  <div class="admin-box">
+    <div class="admin-hdr">
+      <h2>⚙️ لوحة التحكم</h2>
+      <button class="admin-close" onclick="closeOv('admin-overlay')">✕</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="atab on" onclick="switchTab('general',this)">🌐 العام</button>
+      <button class="atab" onclick="switchTab('bank',this)">🏦 البنك</button>
+      <button class="atab" onclick="switchTab('orders',this)">📋 الطلبات</button>
+      <button class="atab" onclick="switchTab('ai',this)">🤖 مساعد AI</button>
+    </div>
+    <div class="admin-body">
+
+      <div class="atab-content on" id="tab-general">
+        <div class="af-grid">
+          <div class="af-row"><label>اسم البراند</label><input id="a-brand" type="text" value="ويب برو"></div>
+          <div class="af-row"><label>رقم الواتساب</label><input id="a-phone" type="text" value="966596655184"></div>
+        </div>
+        <div class="af-grid">
+          <div class="af-row"><label>سعر الباقة الأساسية</label><input id="a-p1" type="text" value="799"></div>
+          <div class="af-row"><label>سعر الباقة الاحترافية</label><input id="a-p2" type="text" value="1299"></div>
+        </div>
+        <div class="af-row"><label>سعر باقة المتجر</label><input id="a-p3" type="text" value="1799"></div>
+        <button class="af-btn" onclick="saveGeneral()">💾 حفظ التغييرات</button>
+        <div class="af-msg" id="msg-general">✅ تم الحفظ!</div>
+      </div>
+
+      <div class="atab-content" id="tab-bank">
+        <p style="font-size:14px;color:var(--muted);margin-bottom:20px;">هذه البيانات تُضاف لرسالة الواتساب تلقائياً عند إرسال الطلب.</p>
+        <div class="af-grid">
+          <div class="af-row"><label>اسم البنك</label><input id="b-bank" type="text" placeholder="بنك الراجحي"></div>
+          <div class="af-row"><label>اسم صاحب الحساب</label><input id="b-name" type="text" placeholder="محمد العلي"></div>
+          <div class="af-row"><label>رقم الآيبان IBAN</label><input id="b-iban" type="text" placeholder="SA00 0000 0000 0000 0000 0000"></div>
+          <div class="af-row"><label>جوال التحويل</label><input id="b-mobile" type="text" placeholder="05XXXXXXXX"></div>
+        </div>
+        <button class="af-btn" onclick="saveBank()">💾 حفظ بيانات البنك</button>
+        <div class="af-msg" id="msg-bank">✅ تم الحفظ!</div>
+        <div class="bank-preview" id="bank-preview">
+          <h4>👁️ ما يراه العميل في واتساب:</h4>
+          <div id="bank-rows"></div>
+        </div>
+      </div>
+
+      <div class="atab-content" id="tab-orders">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <h4 style="font-size:16px;font-weight:800;color:var(--primary);">📋 الطلبات الواردة</h4>
+          <button class="refresh-btn" onclick="loadOrders()">🔄 تحديث</button>
+        </div>
+        <div id="orders-container"><div class="orders-empty">⏳ جاري التحميل...</div></div>
+      </div>
+
+      <div class="atab-content" id="tab-ai">
+        <div class="ai-banner">
+          <h4>🤖 مساعد الطلبات بالذكاء الاصطناعي</h4>
+          <p>الصق تفاصيل طلب العميل وأنا أحلله وأكتب لك رد واتساب جاهز مع السعر وبيانات الدفع.</p>
+        </div>
+        <div class="af-row"><label>تفاصيل طلب العميل</label>
+          <textarea id="ai-input" rows="5" placeholder="مثال: عندي مطعم في الرياض اسمه برجر هاوس..."></textarea>
+        </div>
+        <button class="af-btn" onclick="analyzeOrder()">🤖 حلل الطلب واكتب الرد</button>
+        <div class="ai-loading" id="ai-loading">⏳ جاري التحليل...</div>
+        <div class="ai-result" id="ai-result">
+          <div class="ai-result-hdr">
+            <h4>📋 التحليل والرد المقترح:</h4>
+            <button class="copy-btn" onclick="copyAI()">📋 نسخ</button>
+          </div>
+          <div class="ai-text" id="ai-text"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL='https://rzxamvdjzzuqhpkeziey.supabase.co';
+const SUPABASE_KEY='sb_publishable_SxfJfZqeJFt1e-HXUNr6Vg_qFUr7l6E';
+const ADMIN_PW='web2025';
+let WA_NUM='966596655184';
+
+async function dbInsert(d){
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/orders`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Prefer':'return=minimal'},body:JSON.stringify(d)});
+  return r.ok;
+}
+async function dbSelect(){
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/orders?order=created_at.desc&limit=100`,{headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}});
+  return r.ok?await r.json():[];
+}
+
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const type=document.getElementById('f-type').value;
+  const pkg=document.getElementById('f-pkg').value;
+  const notes=document.getElementById('f-notes').value.trim();
+  document.getElementById('form-success').style.display='none';
+  document.getElementById('form-error').style.display='none';
+  if(!name||!phone||!type){document.getElementById('form-error').style.display='block';return;}
+  
+  const b=localStorage.getItem('wb-bank');
+  const bk=b?JSON.parse(b):null;
+  let bTxt='';
+  if(bk&&bk.bank) bTxt=`\n\n💳 بيانات الدفع:\nالبنك: ${bk.bank}\nالاسم: ${bk.name}\nالآيبان: ${bk.iban}\nجوال التحويل: ${bk.mobile}`;
+  const msg=`السلام عليكم 🌐\nطلب موقع جديد!\n\n👤 الاسم: ${name}\n📱 الجوال: ${phone}\n🏢 النشاط: ${type}\n📦 الباقة: ${pkg}${notes?'\n📝 ملاحظات: '+notes:''}${bTxt}`;
+  document.getElementById('form-success').style.display='block';
+  setTimeout(()=>window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`,'_blank'),800);
+}
+
+function toggleFaq(el){el.parentElement.classList.toggle('open');}
+function closeOv(id){document.getElementById(id).classList.remove('open');}
+
+function openAdmin(){
+  document.getElementById('pw-overlay').classList.add('open');
+  document.getElementById('pw-input').value='';
+  document.getElementById('pw-err').style.display='none';
+  document.getElementById('pw-input').classList.remove('err');
+  setTimeout(()=>document.getElementById('pw-input').focus(),100);
+}
+
+function checkPw(){
+  if(document.getElementById('pw-input').value===ADMIN_PW){
+    closeOv('pw-overlay');
+    document.getElementById('admin-overlay').classList.add('open');
+    loadSaved();loadOrders();
+  } else {
+    document.getElementById('pw-input').classList.add('err');
+    document.getElementById('pw-err').style.display='block';
+    document.getElementById('pw-input').value='';
+    setTimeout(()=>document.getElementById('pw-input').classList.remove('err'),400);
+  }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw();});
+  document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
+});
+
+function switchTab(tab,btn){
+  document.querySelectorAll('.atab-content').forEach(el=>el.classList.remove('on'));
+  document.querySelectorAll('.atab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+tab).classList.add('on');
+  btn.classList.add('on');
+  if(tab==='orders')loadOrders();
+}
+
+function showMsg(id){const el=document.getElementById(id);el.style.display='block';setTimeout(()=>el.style.display='none',2500);}
+
+function saveGeneral(){
+  const brand=document.getElementById('a-brand').value;
+  const phone=document.getElementById('a-phone').value;
+  const p1=document.getElementById('a-p1').value;
+  const p2=document.getElementById('a-p2').value;
+  const p3=document.getElementById('a-p3').value;
+  localStorage.setItem('wb-g',JSON.stringify({brand,phone,p1,p2,p3}));
+  WA_NUM=phone||WA_NUM;
+  if(p1)document.getElementById('p1-num').textContent=p1;
+  if(p2)document.getElementById('p2-num').textContent=p2;
+  if(p3)document.getElementById('p3-num').textContent=p3;
+  showMsg('msg-general');
+}
+
+function saveBank(){
+  const bank=document.getElementById('b-bank').value;
+  const name=document.getElementById('b-name').value;
+  const iban=document.getElementById('b-iban').value;
+  const mobile=document.getElementById('b-mobile').value;
+  localStorage.setItem('wb-bank',JSON.stringify({bank,name,iban,mobile}));
+  if(bank){
+    const rows=[{l:'البنك',v:bank},{l:'الاسم',v:name},{l:'الآيبان',v:iban},{l:'الجوال',v:mobile}];
+    document.getElementById('bank-rows').innerHTML=rows.map(r=>`<div class="bank-row"><span>${r.l}</span><span>${r.v||'—'}</span></div>`).join('');
+    document.getElementById('bank-preview').style.display='block';
+  }
+  showMsg('msg-bank');
+}
+
+function loadSaved(){
+  const g=localStorage.getItem('wb-g');
+  const b=localStorage.getItem('wb-bank');
+  if(g){
+    const d=JSON.parse(g);
+    if(d.brand)document.getElementById('a-brand').value=d.brand;
+    if(d.phone){document.getElementById('a-phone').value=d.phone;WA_NUM=d.phone;}
+    if(d.p1){document.getElementById('a-p1').value=d.p1;document.getElementById('p1-num').textContent=d.p1;}
+    if(d.p2){document.getElementById('a-p2').value=d.p2;document.getElementById('p2-num').textContent=d.p2;}
+    if(d.p3){document.getElementById('a-p3').value=d.p3;document.getElementById('p3-num').textContent=d.p3;}
+  }
+  if(b){
+    const d=JSON.parse(b);
+    if(d.bank)document.getElementById('b-bank').value=d.bank;
+    if(d.name)document.getElementById('b-name').value=d.name;
+    if(d.iban)document.getElementById('b-iban').value=d.iban;
+    if(d.mobile)document.getElementById('b-mobile').value=d.mobile;
+    if(d.bank){
+      const rows=[{l:'البنك',v:d.bank},{l:'الاسم',v:d.name},{l:'الآيبان',v:d.iban},{l:'الجوال',v:d.mobile}];
+      document.getElementById('bank-rows').innerHTML=rows.map(r=>`<div class="bank-row"><span>${r.l}</span><span>${r.v||'—'}</span></div>`).join('');
+      document.getElementById('bank-preview').style.display='block';
+    }
+  }
+}
+
+async function loadOrders(){
+  document.getElementById('orders-container').innerHTML='<div class="orders-empty">⏳ جاري التحميل...</div>';
+  const data=await dbSelect();
+  if(!data.length){document.getElementById('orders-container').innerHTML='<div class="orders-empty">📭 لا توجد طلبات بعد — شارك الموقع وانتظر! 🚀</div>';return;}
+  const rows=data.map(o=>`<tr><td>${o.name||'—'}</td><td>${o.phone||'—'}</td><td>${o.business_type||'—'}</td><td>${o.package||'—'}</td><td>${o.notes||'—'}</td><td><a href="https://wa.me/${(o.phone||'').replace(/\D/g,'')}" target="_blank" style="color:#25D366;font-weight:800;text-decoration:none;">💚 واتساب</a></td></tr>`).join('');
+  document.getElementById('orders-container').innerHTML=`<div style="overflow-x:auto;"><table class="orders-tbl"><thead><tr><th>الاسم</th><th>الجوال</th><th>النشاط</th><th>الباقة</th><th>ملاحظات</th><th>تواصل</th></tr></thead><tbody>${rows}</tbody></table></div><p style="font-size:12px;color:var(--muted);margin-top:10px;">إجمالي الطلبات: ${data.length}</p>`;
+}
+
+async function analyzeOrder(){
+  const input=document.getElementById('ai-input').value.trim();
+  if(!input){alert('الصق تفاصيل الطلب أولاً');return;}
+  const b=localStorage.getItem('wb-bank');
+  const bk=b?JSON.parse(b):null;
+  const bTxt=bk&&bk.bank?`\n\nبيانات الدفع:\nالبنك: ${bk.bank}\nالاسم: ${bk.name}\nالآيبان: ${bk.iban}\nجوال التحويل: ${bk.mobile}`:'';
+  const p1=document.getElementById('a-p1')?.value||'799';
+  const p2=document.getElementById('a-p2')?.value||'1299';
+  const p3=document.getElementById('a-p3')?.value||'1799';
+  document.getElementById('ai-loading').style.display='block';
+  document.getElementById('ai-result').style.display='none';
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`أنت مساعد لصاحب خدمة تصميم مواقع.\n\nطلب العميل: "${input}"\n\nالباقات:\n- الأساسية: ${p1} ريال\n- الاحترافية: ${p2} ريال\n- المتجر: ${p3} ريال\n${bTxt}\n\nاكتب:\n1. تحليل سريع للطلب\n2. الباقة المناسبة مع السبب\n3. رد واتساب جاهز باللهجة السعودية يشمل الترحيب والسعر وبيانات الدفع وطلب التأكيد`}]})});
+    const d=await r.json();
+    const txt=d.content.map(i=>i.text||'').join('\n');
+    document.getElementById('ai-text').textContent=txt;
+    document.getElementById('ai-result').style.display='block';
+  }catch(e){
+    document.getElementById('ai-text').textContent='❌ حدث خطأ، تأكد من الاتصال وحاول مرة ثانية.';
+    document.getElementById('ai-result').style.display='block';
+  }finally{document.getElementById('ai-loading').style.display='none';}
+}
+
+function copyAI(){
+  navigator.clipboard.writeText(document.getElementById('ai-text').textContent).then(()=>{
+    const b=event.target;b.textContent='✅ تم!';setTimeout(()=>b.textContent='📋 نسخ',2000);
+  });
+}
+</script>
+</body>
+</html>
